@@ -78,7 +78,7 @@ namespace TodoList.API.Controllers
         {
             TodoItemViewModel todoItem = await _todoService.GetTodoItemViewModel(viewModel.Id);
 
-            if (todoItem == null)
+            if(todoItem == null)
             {
                 _logger.LogWarning($"TodoItem with id {viewModel.Id} was not found");
                 return NotFound();

@@ -4,10 +4,10 @@ namespace TodoList.API.Interfaces
 {
     public interface ITodoService
     {
-        Task<TodoItemViewModel> Get(Guid id);
-        Task Create(TodoItemViewModel item);
-        Task Delete(Guid id);
-        Task Update(TodoItemViewModel item);
-        Task<IEnumerable<TodoItemViewModel>> GetAll();
+        Task<TodoItemViewModel> GetTodoItemViewModel(Guid id);
+        Task CreateTodoItemViewModel(TodoItemViewModel item);
+        Task DeleteTodoItemViewModel(Guid id);
+        Task UpdateTodoItemViewModel(TodoItemViewModel item);
+        Task<IEnumerable<TodoItemViewModel>> GetAllTodoItemViewModels();
     }
 }

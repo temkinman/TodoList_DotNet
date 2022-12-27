@@ -1,6 +1,7 @@
 ﻿using TodoList.API.Extensions;
 using TodoList.API.Interfaces;
 using TodoList.DataAccess.Interfaces;
+using TodoList.DataAccess.Models;
 using TodoList.ViewModels.Models;
 
 namespace TodoList.API.Services
@@ -8,39 +9,53 @@ namespace TodoList.API.Services
     public class TodoItemService : ITodoService
     {
         private readonly ITodoItem _todoItemRepository;
+        private readonly IUser _userRepository;
 
-        public TodoItemService(ITodoItem todoItemRepository)
+        public TodoItemService(ITodoItem todoItemRepository, IUser userRepository)
         {
             _todoItemRepository = todoItemRepository;
+            _userRepository = userRepository;
         }
 
-        public Task Create(TodoItemViewModel item)
+        public async Task CreateTodoItemViewModel(TodoItemViewModel item)
         {
-            throw new NotImplementedException();
+            User userViewModel = await _userRepository.GetDefaultUser();
+            TodoItem todoItem = new();
+
+            if (userViewModel != null)
+            {
+                todoItem = item.MapToTodoItem();
+            }
+            
+            await _todoItemRepository.CreateTodoItem(todoItem);
         }
 
-        public Task Delete(Guid id)
+        public async Task DeleteTodoItemViewModel(Guid id)
         {
-            throw new NotImplementedException();
+            await _todoItemRepository.DeleteTodoItem(id);
         }
 
-        public async Task<TodoItemViewModel> Get(Guid id)
+        public async Task<TodoItemViewModel?> GetTodoItemViewModel(Guid id)
         {
-            var todoItem = await _todoItemRepository.Get(id);
-            var todoItemViewModel = todoItem.MapToTodoItemDto();
+            TodoItem? todoItem = await _todoItemRepository.GetTodoItem(id);
+
+            TodoItemViewModel? todoItemViewModel = todoItem?.MapToTodoItemViewModel();
 
             return todoItemViewModel;
-
         }
 
-        public Task<IEnumerable<TodoItemViewModel>> GetAll()
+        public async Task<IEnumerable<TodoItemViewModel>> GetAllTodoItemViewModels()
         {
-            throw new NotImplementedException();
+            IEnumerable<TodoItem> todoItems = await _todoItemRepository.GetAllTodoItems();
+            IEnumerable<TodoItemViewModel> todoItemViewModels = todoItems.MapToListViewModels();
+
+            return todoItemViewModels;
         }
 
-        public Task Update(TodoItemViewModel item)
+        public async Task UpdateTodoItemViewModel(TodoItemViewModel item)
         {
-            throw new NotImplementedException();
+            TodoItem updatedTodoItem = item.MapToTodoItem();
+            await _todoItemRepository.UpdateTodoItem(updatedTodoItem);
         }
     }
 }

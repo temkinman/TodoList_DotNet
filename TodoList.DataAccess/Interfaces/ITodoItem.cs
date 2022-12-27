@@ -4,10 +4,10 @@ namespace TodoList.DataAccess.Interfaces
 {
     public interface ITodoItem
     {
-        Task<TodoItem> Get(Guid id);
-        Task Create(TodoItem item);
-        Task Delete(Guid id);
-        Task Update(TodoItem item);
-        Task<IEnumerable<TodoItem>> GetAll();
+        Task<TodoItem> GetTodoItem(Guid id);
+        Task CreateTodoItem(TodoItem item);
+        Task DeleteTodoItem(Guid id);
+        Task UpdateTodoItem(TodoItem item);
+        Task<IEnumerable<TodoItem>> GetAllTodoItems();
     }
 }

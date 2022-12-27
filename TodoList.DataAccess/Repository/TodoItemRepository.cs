@@ -1,32 +1,45 @@
-﻿using TodoList.DataAccess.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using TodoList.DataAccess.Data;
+using TodoList.DataAccess.Interfaces;
 using TodoList.DataAccess.Models;
 
 namespace TodoList.DataAccess.Repository
 {
     public class TodoItemRepository : ITodoItem
     {
-        public Task Create(TodoItem item)
+        private readonly ApplicationDbContext _dbContext;
+
+        public TodoItemRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _dbContext = context;
         }
 
-        public Task Delete(Guid id)
+        public IQueryable<TodoItem> todoItems => _dbContext.TodoItems
+                                                            .Include(t => t.User);
+
+        public async Task Create(TodoItem item)
         {
-            throw new NotImplementedException();
+            _dbContext.TodoItems.Add(item);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task Delete(Guid id)
+        {
+            TodoItem todoItem = await Get(id);
+
+            if (todoItem != null)
+            {
+                _dbContext.TodoItems.Remove(todoItem);
+                await _dbContext.SaveChangesAsync();
+            }
         }
 
         public async Task<TodoItem> Get(Guid id)
         {
-            return await Task.FromResult(new TodoItem()
-            {
-                Id = id,
-                Note = "test",
-                User = new User()
-                {
-                    Id = Guid.NewGuid(),
-                    Login = "test user"
-                }
-            });
+            return await _dbContext.TodoItems
+                .AsNoTracking()
+                .Include(x => x.User)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public Task<IEnumerable<TodoItem>> GetAll()
@@ -34,9 +47,10 @@ namespace TodoList.DataAccess.Repository
             throw new NotImplementedException();
         }
 
-        public Task Update(TodoItem item)
+        public async Task Update(TodoItem item)
         {
-            throw new NotImplementedException();
+            _dbContext.TodoItems.Update(item);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -15,6 +15,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ITodoService, TodoItemService>();
 builder.Services.AddScoped<ITodoItem, TodoItemRepository>();
 
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUser, UserRepository>();
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options

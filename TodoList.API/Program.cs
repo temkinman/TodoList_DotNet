@@ -25,6 +25,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
         .UseNpgsql(builder.Configuration.GetConnectionString(nameof(ApplicationDbContext)));
 });
 
+builder.Services.AddSwaggerGen(options =>
+{
+    var filePath = Path.Combine(AppContext.BaseDirectory, "TodoList.API.xml");
+    options.IncludeXmlComments(filePath);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

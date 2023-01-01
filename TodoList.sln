@@ -3,19 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList.API", "TodoList.API\TodoList.API.csproj", "{ADD37307-E3ED-4AE0-AD19-4E37F24BECBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.API", "TodoList.API\TodoList.API.csproj", "{ADD37307-E3ED-4AE0-AD19-4E37F24BECBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList.DataAccess", "TodoList.DataAccess\TodoList.DataAccess.csproj", "{00F57F73-09B8-4A83-90F7-FC4BE44C4151}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.DataAccess", "TodoList.DataAccess\TodoList.DataAccess.csproj", "{00F57F73-09B8-4A83-90F7-FC4BE44C4151}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList.ViewModels", "TodoList.ViewModels\TodoList.ViewModels.csproj", "{382EC05D-39A5-4065-AF13-95BCE8B22022}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.ViewModels", "TodoList.ViewModels\TodoList.ViewModels.csproj", "{382EC05D-39A5-4065-AF13-95BCE8B22022}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F94FE66A-AAEA-4893-BAD2-9CE6B55F77A8}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList.IntegrationTests", "TodoList.IntegrationTests\TodoList.IntegrationTests.csproj", "{96FBD5FB-40C3-41DC-920C-DF689D7C94AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{ADD37307-E3ED-4AE0-AD19-4E37F24BECBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +34,15 @@ Global
 		{382EC05D-39A5-4065-AF13-95BCE8B22022}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{382EC05D-39A5-4065-AF13-95BCE8B22022}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{382EC05D-39A5-4065-AF13-95BCE8B22022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96FBD5FB-40C3-41DC-920C-DF689D7C94AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96FBD5FB-40C3-41DC-920C-DF689D7C94AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96FBD5FB-40C3-41DC-920C-DF689D7C94AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96FBD5FB-40C3-41DC-920C-DF689D7C94AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81CC7AE3-A4BF-40E0-B0DD-9B6C0A92C964}
 	EndGlobalSection
 EndGlobal
